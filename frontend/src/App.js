@@ -12,6 +12,7 @@ import LandingPage from "./pages/Landing/Landing";
 import Login from "./pages/Login/login";
 import Footer from "./components/Footer";
 import AccountPage from "./pages/Account/Account";
+import NavbarBefore from "./components/Navbar";
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -49,7 +50,7 @@ function App() {
         <BrowserRouter>
           {/* Always render the main Navbar component */}
           <div className="pages">
-            {isAuthenticated ? <NavbarDefault /> : <Navbar />}{" "}
+            {isAuthenticated ? <NavbarDefault /> : <NavbarBefore />}{" "}
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />

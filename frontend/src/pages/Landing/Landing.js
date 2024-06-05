@@ -1,5 +1,5 @@
 const LandingPage = () => {
-  return <>ini landing</>;
+  return <></>;
 };
 
 export default LandingPage;

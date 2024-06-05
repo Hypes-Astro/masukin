@@ -54,10 +54,10 @@ const FormInput = () => {
 
   return (
     <div className="main h-full">
-      <h1 className="text-4xl font-bold mt-5">Start your learning journey.</h1>
+      <h1 className="text-4xl font-bold mt-5">Mulai Perjalanan Mu.</h1>
       <form className="flex flex-col mt-5 gap-4" onSubmit={handleOnSubmit}>
         <Typography variant="h6" color="blue-gray" className="-mb-3">
-          Your Name
+          Username
         </Typography>
         <Input
           size="lg"
@@ -72,7 +72,7 @@ const FormInput = () => {
         />
 
         <Typography variant="h6" color="blue-gray" className="-mb-3">
-          Your Email
+          Email
         </Typography>
         <Input
           size="lg"
