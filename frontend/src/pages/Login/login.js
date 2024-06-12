@@ -1,5 +1,5 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useMemberContext } from "../../hooks/useMemberContext";
 import { useState } from "react";
 
@@ -34,9 +34,10 @@ const Login = () => {
           type: "LOGIN_USER",
           payload: { member: data.member, token: data.token },
         });
-        navigate("/Home");
         toast.success("Login berhasil!");
-        // Lakukan tindakan lain setelah login berhasil (misalnya, redirect ke halaman lain)
+        // navigate("/home");
+        window.location.replace("/home");
+        console.log("berhasil");
       } else {
         console.log("lah", data); // Menambahkan log pesan error
         toast.error(data.message || "Login gagal!");

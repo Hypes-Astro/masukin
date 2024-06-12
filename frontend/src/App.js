@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
@@ -21,45 +27,59 @@ const AuthContext = createContext({
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    localStorage.getItem("token") ? true : false
+    localStorage.getItem("loggedInUser") ? true : false
   );
 
   useEffect(() => {
     // Periksa apakah token ada di localStorage saat aplikasi dimuat
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("loggedInUser");
     if (token) {
       setIsAuthenticated(true);
     }
   }, []);
 
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     window.location.replace("/home");
+  //   }
+  // }, [isAuthenticated]);
+
   const handleLogin = () => {
-    // Implement login logic (e.g., API call, form submission)
     setIsAuthenticated(true); // Update state after successful login
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
     localStorage.removeItem("token");
-    setIsAuthenticated(false); // Update state after logout
+    setIsAuthenticated(false); // Update state setelah logout
+    window.location.href = "/";
   };
 
   return (
     <AuthContext.Provider
       value={{ isAuthenticated, handleLogin, handleLogout }}
     >
-      <div className="App w-screen h-screen">
+      <div className="App w-full h-screen">
         <BrowserRouter>
           {/* Always render the main Navbar component */}
           <div className="pages">
             {isAuthenticated ? <NavbarDefault /> : <NavbarBefore />}{" "}
             <Routes>
-              <Route path="/" element={<LandingPage />} />
+              <Route
+                path="/"
+                element={isAuthenticated ? <Home /> : <LandingPage />}
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route
-                path="/Home"
+                path="/home"
                 element={
                   // Protected route with conditional rendering based on authentication state
-                  isAuthenticated ? <Home /> : <Navigate to="/login" replace />
+                  isAuthenticated ? (
+                    <Home />
+                  ) : (
+                    <Navigate to="/login" replace={true} />
+                  )
                 }
               />
               <Route path="/account" element={<AccountPage />} />

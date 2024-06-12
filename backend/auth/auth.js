@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log("Authorization Header:", authHeader); // log header untuk debugging
+  console.log("Authorization Header:", authHeader);
 
   if (!authHeader) {
     console.log("Authorization header missing");
@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
   }
 
   const token = authHeader.split(" ")[1];
-  console.log("Extracted Token:", token); // log token untuk debugging
+  console.log("Extracted Token:", token);
 
   if (!token) {
     console.log("Token missing");
@@ -20,7 +20,7 @@ const auth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded Token:", decoded); // log payload token untuk debugging
+    console.log("Decoded Token:", decoded);
     req.user = decoded;
     next();
   } catch (err) {

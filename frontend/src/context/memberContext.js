@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const MemberContext = createContext();
 
@@ -19,6 +20,12 @@ export const memberReducer = (state, action) => {
         ...state,
         loggedInUser: action.payload.member,
         token: action.payload.token,
+      };
+    case "LOGOUT_USER":
+      return {
+        ...state,
+        loggedInUser: null,
+        token: null,
       };
     default:
       return state;
@@ -60,8 +67,14 @@ export const MemberContextProvider = ({ children }) => {
     }
   }, [state.loggedInUser, state.token]);
 
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT_USER" });
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("token");
+    window.location.replace("/");
+  };
   return (
-    <MemberContext.Provider value={{ ...state, dispatch }}>
+    <MemberContext.Provider value={{ ...state, dispatch, handleLogout }}>
       {children}
     </MemberContext.Provider>
   );
