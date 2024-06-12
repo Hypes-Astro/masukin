@@ -2,6 +2,8 @@
 
 Masukin-Event Platform adalah sebuah aplikasi web yang memfasilitasi pengguna untuk bergabung dan berbagi ruang temu online dengan mudah. Platform ini dikembangkan menggunakan teknologi MERN (MongoDB, Express.js, React.js, Node.js), yang merupakan stack teknologi populer untuk pengembangan aplikasi web modern.
 
+![Landing Page](asset/landing.png)
+
 ## Fitur Utama
 
 1. **Pembuatan Acara**: Pengguna dapat membuat acara baru dengan mengisi detail seperti judul, deskripsi, tanggal, waktu, dan lokasi (jika ada).
