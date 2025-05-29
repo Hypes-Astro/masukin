@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMemberContext } from "../hooks/useMemberContext";
 import { Input, Button, Typography } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // toast
 import { ToastContainer, toast } from "react-toastify";
@@ -13,6 +13,7 @@ const FormInput = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +42,23 @@ const FormInput = () => {
       setError(null);
       console.log("Add succed", json);
       toast.success("Welcome to the club");
+      
+      // Create user data in the database
       dispatch({ type: "CREATE_DATA", payload: json });
+      
+      // Log in the user after successful signup
+      dispatch({ 
+        type: "LOGIN_USER", 
+        payload: {
+          member: json,
+          token: json.token
+        } 
+      });
+      
+      // Add a slight delay to allow toast to be visible before redirecting
+      setTimeout(() => {
+        navigate('/home');
+      }, 1500);
     } else {
       toast.error("Gagal Memasukan Data 😔", {
         toastId: "toast-title-error",
