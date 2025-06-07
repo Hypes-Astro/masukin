@@ -19,6 +19,7 @@ import Login from "./pages/Login/login";
 import Footer from "./components/Footer";
 import AccountPage from "./pages/Account/Account";
 import NavbarBefore from "./components/Navbar";
+import SessionDetail from "./pages/Detail/detailPages";
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -81,6 +82,16 @@ function App() {
                     <Navigate to="/login" replace={true} />
                   )
                 }
+              />
+              <Route 
+                path="/session/:id" 
+                element={
+                  isAuthenticated ? (
+                    <SessionDetail />
+                  ) : (
+                    <Navigate to="/login" replace={true} />
+                  )
+                } 
               />
               <Route path="/account" element={<AccountPage />} />
             </Routes>

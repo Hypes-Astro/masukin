@@ -12,6 +12,13 @@ const {
   loginMember,
 } = require("../Controllers/MemberController");
 
+
+router.get("/ping", (req, res) => {
+  res.json({ message: "pong!" });
+});
+
+
+
 router.get("/members", auth, getAllMembers);
 router.get("/members/:id", auth, getMember);
 router.post("/createmember", createMember);

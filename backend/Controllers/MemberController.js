@@ -1,8 +1,8 @@
 const { Mongoose } = require("mongoose");
 const Member = require("../Models/MemberModels");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;  
 const jwt = require("jsonwebtoken");
 
 // Get all members
@@ -36,7 +36,7 @@ const createMember = async (req, res) => {
       password: hashedPassword, // Simpan password yang sudah dihash
     });
     res.status(200).json(member);
-  } catch (error) {
+  } catch (error) {``
     res.status(400).json({ error: error.message });
   }
 };

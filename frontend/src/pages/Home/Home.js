@@ -151,10 +151,10 @@ const Home = () => {
 
                 <div className="w-full flex items-center justify-center mt-5">
                   <Link
-                    to={session.session_link}
+                    to={`/session/${session._id}`}
                     className="bg-black hover:bg-blue-gray-900 text-white p-2 rounded-md"
                   >
-                    Masuk Ruang
+                    Lihat Detail
                   </Link>
                 </div>
               </div>
