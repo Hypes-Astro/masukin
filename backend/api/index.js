@@ -29,6 +29,10 @@ app.use(async (req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.send("✅ Backend API is running.");
+});
+
 app.use("/api/masukin", masukin);
 
 module.exports = app; // penting untuk vercel
