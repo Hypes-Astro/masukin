@@ -24,6 +24,11 @@ async function connectToDB() {
   }
 }
 
+app.get("/ping", (req, res) => {
+  res.json({ message: "pong!" });
+});
+
+
 app.use(async (req, res, next) => {
   await connectToDB();
   next();
